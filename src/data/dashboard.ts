@@ -1,3 +1,5 @@
+import type { Farm, PriorityItem, TrendingStat } from '../types/dashboard'
+
 export const criticalIssues = [
   {
     farm: 'Farm 3',
@@ -11,7 +13,7 @@ export const criticalIssues = [
     description: 'High risk of disease',
     time: 'Today, 5:40 AM',
   },
-]
+] satisfies PriorityItem[]
 
 export const attentionItems = [
   {
@@ -32,7 +34,7 @@ export const attentionItems = [
     description: '15% below monthly target',
     time: 'Today, 5:40 AM',
   },
-]
+] satisfies PriorityItem[]
 
 export const trendingStats = [
   {
@@ -63,7 +65,7 @@ export const trendingStats = [
     trend: 'negative',
     helper: 'vs last 7 days',
   },
-]
+] satisfies TrendingStat[]
 
 export const farms = [
   {
@@ -130,4 +132,4 @@ export const farms = [
     production: '100',
     waterStatus: 'Normal',
   },
-]
+] satisfies Farm[]

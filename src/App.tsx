@@ -1,15 +1,13 @@
 import { useState } from 'react'
-import './App.css'
 import Dashboard from './pages/Dashboard'
 import Home from './pages/Home'
-
-type AppPage = 'home' | 'dashboard'
+import type { AppPage } from './types/app'
 
 function App() {
   const [currentPage, setCurrentPage] = useState<AppPage>('home')
 
   return (
-    <div className="app">
+    <div className="min-h-svh">
       {currentPage === 'home' ? (
         <Home onOpenDashboard={() => setCurrentPage('dashboard')} />
       ) : (
