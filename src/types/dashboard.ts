@@ -1,12 +1,13 @@
-export type DashboardProps = {
-  onBackHome: () => void
-}
-
 export type DashboardIconName =
   | 'alert'
+  | 'barChart'
   | 'bell'
   | 'chevron'
+  | 'clock'
+  | 'close'
+  | 'droplet'
   | 'farms'
+  | 'heart'
   | 'home'
   | 'image'
   | 'logout'
@@ -30,7 +31,6 @@ export type DashboardIconProps = {
 export type DashboardSidebarProps = {
   farmCount: number
   navItems: NavItem[]
-  onBackHome: () => void
   provinceCount: number
 }
 
@@ -69,20 +69,33 @@ export type TrendCardProps = {
 
 export type FarmStatus = 'Attention' | 'Critical' | 'Healthy'
 
+export type FarmDetail = {
+  label: string
+  value: string
+}
+
+export type FarmAlert = {
+  title: string
+  description: string
+  time: string
+}
+
 export type Farm = {
   name: string
   province: string
   status: FarmStatus
-  healthScore: string
-  production: string
-  waterStatus: string
+  details: FarmDetail[]
+  lastUpdate: string
+  activeAlerts?: FarmAlert[]
 }
 
 export type FarmCardProps = {
   farm: Farm
+  isSelected?: boolean
+  onSelect: (farm: Farm) => void
 }
 
-export type FarmDetailProps = {
-  label: string
-  value: string
+export type FarmDetailPanelProps = {
+  farm: Farm
+  onClose: () => void
 }

@@ -1,6 +1,6 @@
-import type { HomeProps } from '../types/app'
+import { Link } from "react-router-dom";
 
-function Home({ onOpenDashboard }: HomeProps) {
+function Home() {
   return (
     <main className="grid min-h-svh place-items-center bg-slate-50 px-6 py-10 text-slate-900">
       <section className="w-full max-w-2xl rounded-lg border border-slate-200 bg-white p-8 shadow-xl shadow-slate-200/70 sm:p-12">
@@ -14,13 +14,12 @@ function Home({ onOpenDashboard }: HomeProps) {
           Track farm health, urgent issues, production, revenue, and water status
           from one focused dashboard.
         </p>
-        <button
-          className="min-h-[42px] rounded-lg border border-slate-950 bg-slate-950 px-5 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-slate-800"
-          type="button"
-          onClick={onOpenDashboard}
+        <Link
+          className="inline-flex min-h-[42px] items-center rounded-lg border border-slate-950 bg-slate-950 px-5 text-sm font-extrabold text-white no-underline transition hover:-translate-y-0.5 hover:bg-slate-800"
+          to="/dashboard"
         >
           Go to Dashboard
-        </button>
+        </Link>
       </section>
     </main>
   )

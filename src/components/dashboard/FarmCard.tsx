@@ -1,6 +1,5 @@
 import type { FarmCardProps, FarmStatus } from "../../types/dashboard";
 import DashboardIcon from "./DashboardIcon";
-import FarmDetail from "./FarmDetail";
 
 const statusDotStyles: Record<FarmStatus, string> = {
   Healthy: "bg-emerald-700",
@@ -8,9 +7,16 @@ const statusDotStyles: Record<FarmStatus, string> = {
   Critical: "bg-red-700",
 };
 
-function FarmCard({ farm }: FarmCardProps) {
+function FarmCard({ farm, isSelected = false, onSelect }: FarmCardProps) {
   return (
-    <article className="grid min-h-[126px] grid-cols-[34px_minmax(0,1fr)] gap-4 rounded-lg border border-slate-200 bg-white p-[16px] hover:shadow-md transition-shadow">
+    <button
+      className={`grid min-h-[126px] w-full grid-cols-[34px_minmax(0,1fr)] gap-4 rounded-lg border bg-white p-[16px] text-left transition-shadow hover:shadow-md ${
+        isSelected ? "border-red-300 shadow-md" : "border-slate-200"
+      }`}
+      type="button"
+      onClick={() => onSelect(farm)}
+      aria-pressed={isSelected}
+    >
       <DashboardIcon className="h-8 w-8 text-slate-800" name="image" />
       <div className="min-w-0">
         <div className="mb-3 flex items-start justify-between gap-3">
@@ -31,12 +37,18 @@ function FarmCard({ farm }: FarmCardProps) {
         </div>
 
         <dl className="m-0 grid gap-1">
-          <FarmDetail label="Health Score" value={farm.healthScore} />
-          <FarmDetail label="Production (MT)" value={farm.production} />
-          <FarmDetail label="Water Status" value={farm.waterStatus} />
+          {farm.details.map((detail) => (
+            <div
+              className="grid grid-cols-[minmax(0,1fr)_auto] gap-3 text-[0.72rem] font-bold leading-tight text-slate-700"
+              key={detail.label}
+            >
+              <dt>{detail.label}</dt>
+              <dd className="m-0 text-right">{detail.value}</dd>
+            </div>
+          ))}
         </dl>
       </div>
-    </article>
+    </button>
   );
 }
 

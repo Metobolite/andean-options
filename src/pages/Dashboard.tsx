@@ -1,7 +1,9 @@
+import { useState } from "react";
 import {
   DashboardHeader,
   DashboardSidebar,
   FarmCard,
+  FarmDetailPanel,
   PriorityPanel,
   TrendCard,
 } from "../components/dashboard";
@@ -10,18 +12,12 @@ import {
   criticalIssues,
   farms,
   trendingStats,
+  navItems,
 } from "../data/dashboard";
-import type { DashboardProps, NavItem } from "../types/dashboard";
+import type { Farm } from "../types/dashboard";
 
-const navItems: NavItem[] = [
-  { label: "Overview", href: "#overview", icon: "home", active: true },
-  { label: "Farms", href: "#farm-status-heading", icon: "farms" },
-  { label: "Alerts", href: "#priority-items", icon: "bell" },
-  { label: "Reports", href: "#trending-heading", icon: "reports" },
-  { label: "Settings", href: "#overview", icon: "settings" },
-];
-
-function Dashboard({ onBackHome }: DashboardProps) {
+function Dashboard() {
+  const [selectedFarm, setSelectedFarm] = useState<Farm | null>(null);
   const provinceCount = new Set(farms.map((farm) => farm.province)).size;
 
   return (
@@ -29,7 +25,6 @@ function Dashboard({ onBackHome }: DashboardProps) {
       <DashboardSidebar
         farmCount={farms.length}
         navItems={navItems}
-        onBackHome={onBackHome}
         provinceCount={provinceCount}
       />
 
@@ -89,12 +84,24 @@ function Dashboard({ onBackHome }: DashboardProps) {
             </h2>
             <div className="grid gap-3.5 md:grid-cols-2 lg:grid-cols-4">
               {farms.map((farm) => (
-                <FarmCard farm={farm} key={farm.name} />
+                <FarmCard
+                  farm={farm}
+                  isSelected={selectedFarm?.name === farm.name}
+                  key={farm.name}
+                  onSelect={setSelectedFarm}
+                />
               ))}
             </div>
           </section>
         </section>
       </section>
+
+      {selectedFarm && (
+        <FarmDetailPanel
+          farm={selectedFarm}
+          onClose={() => setSelectedFarm(null)}
+        />
+      )}
     </main>
   );
 }

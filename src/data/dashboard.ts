@@ -1,4 +1,12 @@
-import type { Farm, PriorityItem, TrendingStat } from '../types/dashboard'
+import type { Farm, NavItem, PriorityItem, TrendingStat } from '../types/dashboard'
+
+export const navItems: NavItem[] = [
+  { label: "Overview", href: "#overview", icon: "home", active: true },
+  { label: "Farms", href: "#farm-status-heading", icon: "farms" },
+  { label: "Alerts", href: "#priority-items", icon: "bell" },
+  { label: "Reports", href: "#trending-heading", icon: "reports" },
+  { label: "Settings", href: "#overview", icon: "settings" },
+];
 
 export const criticalIssues = [
   {
@@ -76,64 +84,107 @@ export const farms = [
     name: 'Farm 1',
     province: 'Province 1',
     status: 'Healthy',
-    healthScore: '95%',
-    production: '156',
-    waterStatus: 'Normal',
+    lastUpdate: '10 min ago',
+    details: [
+      { label: 'Health Score', value: '95%' },
+      { label: 'Production (MT)', value: '156' },
+      { label: 'Water Status', value: 'Normal' },
+    ],
   },
   {
     name: 'Farm 2',
     province: 'Province 1',
     status: 'Attention',
-    healthScore: '82%',
-    production: '120',
-    waterStatus: 'Normal',
+    lastUpdate: '18 min ago',
+    details: [
+      { label: 'Health Score', value: '82%' },
+      { label: 'Production (MT)', value: '120' },
+      { label: 'Water Status', value: 'Normal' },
+    ],
   },
   {
     name: 'Farm 3',
     province: 'Province 1',
     status: 'Critical',
-    healthScore: '62%',
-    production: '90',
-    waterStatus: 'Low',
+    lastUpdate: '15 min ago',
+    details: [
+      { label: 'Health Score', value: '62%' },
+      { label: 'Production (MT)', value: '90' },
+      { label: 'Water Status', value: 'Low' },
+    ],
+    activeAlerts: [
+      {
+        title: 'Irrigation Failure',
+        description: 'Irrigation system not working',
+        time: '15 min ago',
+      },
+      {
+        title: 'Water Reservoir Low',
+        description: 'Reservoir level is below 20%',
+        time: '45 min ago',
+      },
+    ],
   },
   {
     name: 'Farm 4',
     province: 'Province 1',
     status: 'Healthy',
-    healthScore: '91%',
-    production: '140',
-    waterStatus: 'Normal',
+    lastUpdate: '12 min ago',
+    details: [
+      { label: 'Health Score', value: '91%' },
+      { label: 'Production (MT)', value: '140' },
+      { label: 'Water Status', value: 'Normal' },
+    ],
   },
   {
     name: 'Farm 5',
     province: 'Province 2',
     status: 'Attention',
-    healthScore: '75%',
-    production: '110',
-    waterStatus: 'Normal',
+    lastUpdate: '22 min ago',
+    details: [
+      { label: 'Health Score', value: '75%' },
+      { label: 'Production (MT)', value: '110' },
+      { label: 'Water Status', value: 'Normal' },
+    ],
   },
   {
     name: 'Farm 6',
     province: 'Province 2',
     status: 'Healthy',
-    healthScore: '93%',
-    production: '145',
-    waterStatus: 'Normal',
+    lastUpdate: '8 min ago',
+    details: [
+      { label: 'Health Score', value: '93%' },
+      { label: 'Production (MT)', value: '145' },
+      { label: 'Water Status', value: 'Normal' },
+    ],
   },
   {
     name: 'Farm 7',
     province: 'Province 2',
     status: 'Critical',
-    healthScore: '55%',
-    production: '80',
-    waterStatus: 'Low',
+    lastUpdate: '20 min ago',
+    details: [
+      { label: 'Health Score', value: '55%' },
+      { label: 'Production (MT)', value: '80' },
+      { label: 'Water Status', value: 'Low' },
+    ],
+    activeAlerts: [
+      {
+        title: 'Disease Risk Detected',
+        description: 'High risk of disease',
+        time: '20 min ago',
+      },
+    ],
   },
   {
     name: 'Farm 8',
     province: 'Province 2',
     status: 'Attention',
-    healthScore: '70%',
-    production: '100',
-    waterStatus: 'Normal',
+    lastUpdate: '16 min ago',
+    details: [
+      { label: 'Health Score', value: '70%' },
+      { label: 'Production (MT)', value: '100' },
+      { label: 'Water Status', value: 'Normal' },
+    ],
   },
 ] satisfies Farm[]

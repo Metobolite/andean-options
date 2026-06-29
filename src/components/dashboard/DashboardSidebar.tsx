@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import andeanIcon from "../../assets/andean.svg";
 import type { DashboardSidebarProps } from "../../types/dashboard";
 import DashboardIcon from "./DashboardIcon";
@@ -5,7 +6,6 @@ import DashboardIcon from "./DashboardIcon";
 function DashboardSidebar({
   farmCount,
   navItems,
-  onBackHome,
   provinceCount,
 }: DashboardSidebarProps) {
   return (
@@ -55,14 +55,13 @@ function DashboardSidebar({
         </div>
       </div>
 
-      <button
-        className="mx-2.5 mb-[18px] flex min-h-[42px] items-center gap-2.5 rounded-[5px] border-0 bg-transparent px-[13px] text-[0.9rem] font-extrabold text-slate-500 hover:bg-slate-100 hover:text-slate-950"
-        type="button"
-        onClick={onBackHome}
+      <Link
+        className="mx-2.5 mb-[18px] flex min-h-[42px] items-center gap-2.5 rounded-[5px] border-0 bg-transparent px-[13px] text-[0.9rem] font-extrabold text-slate-500 no-underline hover:bg-slate-100 hover:text-slate-950"
+        to="/home"
       >
         <DashboardIcon className="h-[18px] w-[18px]" name="logout" />
         <p className="text-[0.9rem] font-semibold">Logout</p>
-      </button>
+      </Link>
     </aside>
   );
 }

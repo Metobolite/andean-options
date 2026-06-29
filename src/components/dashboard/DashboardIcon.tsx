@@ -38,13 +38,39 @@ function DashboardIcon({ className, name }: DashboardIconProps) {
           <path d="M10 21h4" />
         </>
       )}
+      {name === "barChart" && (
+        <>
+          <path d="M4 20V10" />
+          <path d="M10 20V4" />
+          <path d="M16 20v-7" />
+          <path d="M22 20H2" />
+        </>
+      )}
       {name === "chevron" && <path d="m9 18 6-6-6-6" />}
+      {name === "clock" && (
+        <>
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 7v5l3 2" />
+        </>
+      )}
+      {name === "close" && (
+        <>
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </>
+      )}
+      {name === "droplet" && (
+        <path d="M12 3.5S6.5 10 6.5 14a5.5 5.5 0 0 0 11 0c0-4-5.5-10.5-5.5-10.5Z" />
+      )}
       {name === "farms" && (
         <>
           <path d="M4 20V9l8-5 8 5v11" />
           <path d="M9 20v-6h6v6" />
           <path d="M4 12h16" />
         </>
+      )}
+      {name === "heart" && (
+        <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z" />
       )}
       {name === "home" && (
         <>
