@@ -36,7 +36,14 @@ export type DashboardSidebarProps = {
 
 export type PriorityVariant = 'attention' | 'critical'
 
+export type PriorityStyles = {
+  badge: string
+  icon: string
+  panel: string
+}
+
 export type PriorityItem = {
+  variant: PriorityVariant
   farm: string
   title: string
   description: string
@@ -74,19 +81,13 @@ export type FarmDetail = {
   value: string
 }
 
-export type FarmAlert = {
-  title: string
-  description: string
-  time: string
-}
-
 export type Farm = {
   name: string
   province: string
   status: FarmStatus
   details: FarmDetail[]
+  crop: string
   lastUpdate: string
-  activeAlerts?: FarmAlert[]
 }
 
 export type FarmCardProps = {
@@ -96,6 +97,7 @@ export type FarmCardProps = {
 }
 
 export type FarmDetailPanelProps = {
+  activeAlerts: PriorityItem[]
   farm: Farm
   onClose: () => void
 }

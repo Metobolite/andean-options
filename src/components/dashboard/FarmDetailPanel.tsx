@@ -4,10 +4,11 @@ import type {
   FarmDetailPanelProps,
   FarmStatus,
 } from "../../types/dashboard";
+import { priorityStyles } from "../../data/dashboard";
 import DashboardIcon from "./DashboardIcon";
 
 const statusBadgeStyles: Record<FarmStatus, string> = {
-  Healthy: "bg-emerald-50 text-emerald-700",
+  Healthy: "bg-emerald-50 text-emerald-600",
   Attention: "bg-amber-50 text-amber-700",
   Critical: "bg-red-50 text-red-700",
 };
@@ -36,8 +37,11 @@ function getValueTone(farm: Farm, label: string, value: string) {
   return "text-slate-800";
 }
 
-function FarmDetailPanel({ farm, onClose }: FarmDetailPanelProps) {
-  const activeAlerts = farm.activeAlerts ?? [];
+function FarmDetailPanel({
+  activeAlerts,
+  farm,
+  onClose,
+}: FarmDetailPanelProps) {
   const overviewItems = [
     ...farm.details.map((detail) => ({
       ...detail,
@@ -47,6 +51,11 @@ function FarmDetailPanel({ farm, onClose }: FarmDetailPanelProps) {
       label: "Last Update",
       value: farm.lastUpdate,
       icon: "clock" as const,
+    },
+    {
+      label: "Crop",
+      value: farm.crop,
+      icon: "sprout" as const,
     },
   ];
 
@@ -142,28 +151,32 @@ function FarmDetailPanel({ farm, onClose }: FarmDetailPanelProps) {
 
           {activeAlerts.length > 0 ? (
             <div className="grid gap-3">
-              {activeAlerts.map((alert) => (
-                <article
-                  className="grid grid-cols-[22px_minmax(0,1fr)_auto] gap-3 rounded-lg bg-red-50 px-3 py-3"
-                  key={alert.title}
-                >
-                  <DashboardIcon
-                    className="mt-0.5 h-4 w-4 text-red-600"
-                    name="alert"
-                  />
-                  <div className="min-w-0">
-                    <h4 className="m-0 text-xs font-extrabold text-slate-900">
-                      {alert.title}
-                    </h4>
-                    <p className="mt-1 text-[0.68rem] font-semibold text-slate-500">
-                      {alert.description}
-                    </p>
-                  </div>
-                  <time className="whitespace-nowrap text-[0.66rem] font-bold text-slate-500">
-                    {alert.time}
-                  </time>
-                </article>
-              ))}
+              {activeAlerts.map((alert) => {
+                const styles = priorityStyles[alert.variant];
+
+                return (
+                  <article
+                    className={`grid grid-cols-[22px_minmax(0,1fr)_auto] gap-3 rounded-lg border px-3 py-3 ${styles.panel}`}
+                    key={`${alert.farm}-${alert.title}`}
+                  >
+                    <DashboardIcon
+                      className={`mt-0.5 h-4 w-4 rounded p-0.5 ${styles.icon}`}
+                      name={alert.variant === "critical" ? "alert" : "bell"}
+                    />
+                    <div className="min-w-0">
+                      <h4 className="m-0 text-xs font-extrabold text-slate-900">
+                        {alert.title}
+                      </h4>
+                      <p className="mt-1 text-[0.68rem] font-semibold text-slate-500">
+                        {alert.description}
+                      </p>
+                    </div>
+                    <time className="whitespace-nowrap text-[0.66rem] font-bold text-slate-500">
+                      {alert.time}
+                    </time>
+                  </article>
+                );
+              })}
             </div>
           ) : (
             <p className="rounded-lg bg-slate-50 px-3 py-4 text-sm font-semibold text-slate-500">

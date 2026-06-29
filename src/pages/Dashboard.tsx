@@ -18,6 +18,7 @@ import type { Farm } from "../types/dashboard";
 
 function Dashboard() {
   const [selectedFarm, setSelectedFarm] = useState<Farm | null>(null);
+  const alertItems = [...criticalIssues, ...attentionItems];
   const provinceCount = new Set(farms.map((farm) => farm.province)).size;
 
   return (
@@ -98,6 +99,9 @@ function Dashboard() {
 
       {selectedFarm && (
         <FarmDetailPanel
+          activeAlerts={alertItems.filter(
+            (item) => item.farm === selectedFarm.name,
+          )}
           farm={selectedFarm}
           onClose={() => setSelectedFarm(null)}
         />

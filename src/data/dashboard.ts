@@ -1,4 +1,24 @@
-import type { Farm, NavItem, PriorityItem, TrendingStat } from '../types/dashboard'
+import type {
+  Farm,
+  NavItem,
+  PriorityItem,
+  PriorityStyles,
+  PriorityVariant,
+  TrendingStat,
+} from '../types/dashboard'
+
+export const priorityStyles: Record<PriorityVariant, PriorityStyles> = {
+  critical: {
+    badge: "bg-[#FDD8D3] text-black",
+    icon: "bg-[#FDD1CF] text-red-600",
+    panel: "border-[#FCDAD8] bg-[#FEF6F4]",
+  },
+  attention: {
+    badge: "bg-[#FEDC9C] text-black",
+    icon: "bg-[#FEF4E0] text-amber-600",
+    panel: "border-[#F8E8CC] bg-[#FEFAF0]",
+  },
+}
 
 export const navItems: NavItem[] = [
   { label: "Overview", href: "#overview", icon: "home", active: true },
@@ -10,12 +30,14 @@ export const navItems: NavItem[] = [
 
 export const criticalIssues = [
   {
+    variant: 'critical',
     farm: 'Farm 3',
     title: 'Irrigation Failure',
     description: 'Affects 90 MT production - Water status low',
     time: 'Today, 6:15 AM',
   },
   {
+    variant: 'critical',
     farm: 'Farm 7',
     title: 'Disease Risk Detected',
     description: 'High disease risk - Health score dropped to 55%',
@@ -25,18 +47,21 @@ export const criticalIssues = [
 
 export const attentionItems = [
   {
+    variant: 'attention',
     farm: 'Farm 2',
     title: 'Feed Inventory Low',
     description: 'Feed will last 2 days - order today',
     time: 'Today, 6:15 AM',
   },
   {
+    variant: 'attention',
     farm: 'Farm 5',
     title: 'Maintenance Due',
     description: 'Tractor maintenance overdue - assign technician',
     time: 'Today, 5:40 AM',
   },
   {
+    variant: 'attention',
     farm: 'Farm 8',
     title: 'Production Below Target',
     description: '15% below monthly target - review cause',
@@ -84,6 +109,7 @@ export const farms = [
     name: 'Farm 1',
     province: 'Province 1',
     status: 'Healthy',
+    crop: 'Corn',
     lastUpdate: '10 min ago',
     details: [
       { label: 'Health Score', value: '95%' },
@@ -95,6 +121,7 @@ export const farms = [
     name: 'Farm 2',
     province: 'Province 1',
     status: 'Attention',
+    crop: 'Wheat',
     lastUpdate: '18 min ago',
     details: [
       { label: 'Health Score', value: '82%' },
@@ -106,29 +133,19 @@ export const farms = [
     name: 'Farm 3',
     province: 'Province 1',
     status: 'Critical',
+    crop: 'Soybeans',
     lastUpdate: '15 min ago',
     details: [
       { label: 'Health Score', value: '62%' },
       { label: 'Production (MT)', value: '90' },
       { label: 'Water Status', value: 'Low' },
     ],
-    activeAlerts: [
-      {
-        title: 'Irrigation Failure',
-        description: 'Irrigation system not working',
-        time: '15 min ago',
-      },
-      {
-        title: 'Water Reservoir Low',
-        description: 'Reservoir level is below 20%',
-        time: '45 min ago',
-      },
-    ],
   },
   {
     name: 'Farm 4',
     province: 'Province 1',
     status: 'Healthy',
+    crop: 'Corn',
     lastUpdate: '12 min ago',
     details: [
       { label: 'Health Score', value: '91%' },
@@ -140,6 +157,7 @@ export const farms = [
     name: 'Farm 5',
     province: 'Province 2',
     status: 'Attention',
+    crop: 'Wheat',
     lastUpdate: '22 min ago',
     details: [
       { label: 'Health Score', value: '75%' },
@@ -151,6 +169,7 @@ export const farms = [
     name: 'Farm 6',
     province: 'Province 2',
     status: 'Healthy',
+    crop: 'Soybeans',
     lastUpdate: '8 min ago',
     details: [
       { label: 'Health Score', value: '93%' },
@@ -162,24 +181,19 @@ export const farms = [
     name: 'Farm 7',
     province: 'Province 2',
     status: 'Critical',
+    crop: 'Corn',
     lastUpdate: '20 min ago',
     details: [
       { label: 'Health Score', value: '55%' },
       { label: 'Production (MT)', value: '80' },
       { label: 'Water Status', value: 'Low' },
     ],
-    activeAlerts: [
-      {
-        title: 'Disease Risk Detected',
-        description: 'High risk of disease',
-        time: '20 min ago',
-      },
-    ],
   },
   {
     name: 'Farm 8',
     province: 'Province 2',
     status: 'Attention',
+    crop: 'Wheat',
     lastUpdate: '16 min ago',
     details: [
       { label: 'Health Score', value: '70%' },

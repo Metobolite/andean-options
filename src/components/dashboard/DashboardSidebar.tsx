@@ -29,7 +29,7 @@ function DashboardSidebar({
             href={item.href}
             key={item.label}
           >
-            <DashboardIcon className="h-4 w-4 stroke-[2.25]" name={item.icon} />
+            <DashboardIcon className="h-4 w-4" name={item.icon} />
             <span>{item.label}</span>
             {item.label === "Alerts" && (
               <strong className="grid h-[22px] min-w-[22px] place-items-center rounded-full bg-red-600 text-[0.76rem] text-white">

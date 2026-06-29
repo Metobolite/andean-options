@@ -1,24 +1,6 @@
-import type {
-  PriorityPanelProps,
-  PriorityVariant,
-} from "../../types/dashboard";
+import { priorityStyles } from "../../data/dashboard";
+import type { PriorityPanelProps } from "../../types/dashboard";
 import DashboardIcon from "./DashboardIcon";
-
-const priorityStyles: Record<
-  PriorityVariant,
-  { badge: string; icon: string; panel: string }
-> = {
-  critical: {
-    badge: "bg-[#FDD8D3] text-black",
-    icon: "bg-[#FDD1CF] text-red-600",
-    panel: "border-[#FCDAD8] bg-[#FEF6F4]",
-  },
-  attention: {
-    badge: "bg-[#FEDC9C] text-black",
-    icon: "bg-[#FEF4E0] text-amber-600",
-    panel: "border-[#F8E8CC] bg-[#FEFAF0]",
-  },
-};
 
 function PriorityPanel({
   actionLabel,
