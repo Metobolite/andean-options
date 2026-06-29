@@ -25,7 +25,7 @@ function Dashboard({ onBackHome }: DashboardProps) {
   const provinceCount = new Set(farms.map((farm) => farm.province)).size;
 
   return (
-    <main className="grid min-h-svh bg-[#fbfcfd] text-slate-800 lg:grid-cols-[240px_minmax(0,1fr)]">
+    <main className="grid min-h-svh bg-[#fbfcfd] text-slate-800 xl:grid-cols-[240px_minmax(0,1fr)]">
       <DashboardSidebar
         farmCount={farms.length}
         navItems={navItems}
@@ -70,7 +70,7 @@ function Dashboard({ onBackHome }: DashboardProps) {
             >
               Trending
             </h2>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {trendingStats.map((stat) => (
                 <TrendCard key={stat.label} stat={stat} />
               ))}

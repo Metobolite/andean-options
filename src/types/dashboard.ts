@@ -60,6 +60,7 @@ export type TrendingStat = {
   change: string
   trend: TrendDirection
   helper: string
+  target: string
 }
 
 export type TrendCardProps = {

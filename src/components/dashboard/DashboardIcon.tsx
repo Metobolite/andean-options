@@ -1,6 +1,26 @@
 import type { DashboardIconProps } from "../../types/dashboard";
+import alertTriangle from "../../assets/Alerttriangle.svg";
+import imageIcon from "../../assets/Image.svg";
+
+const assetIcons: Partial<Record<DashboardIconProps["name"], string>> = {
+  alert: alertTriangle,
+  image: imageIcon,
+};
 
 function DashboardIcon({ className, name }: DashboardIconProps) {
+  const assetIcon = assetIcons[name];
+
+  if (assetIcon) {
+    return (
+      <img
+        src={assetIcon}
+        alt=""
+        aria-hidden="true"
+        className={className}
+      />
+    );
+  }
+
   return (
     <svg
       className={className}
@@ -12,13 +32,6 @@ function DashboardIcon({ className, name }: DashboardIconProps) {
       strokeWidth="2"
       aria-hidden="true"
     >
-      {name === "alert" && (
-        <>
-          <path d="M12 3 2.9 19h18.2L12 3Z" />
-          <path d="M12 8v5" />
-          <path d="M12 17h.01" />
-        </>
-      )}
       {name === "bell" && (
         <>
           <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z" />
@@ -38,13 +51,6 @@ function DashboardIcon({ className, name }: DashboardIconProps) {
           <path d="M3 11 12 4l9 7" />
           <path d="M6 10v10h12V10" />
           <path d="M10 20v-6h4v6" />
-        </>
-      )}
-      {name === "image" && (
-        <>
-          <rect x="3" y="3" width="18" height="18" rx="2" />
-          <path d="m8 14 2.5-3 3 4 2-2.5L20 18" />
-          <path d="M8.5 8.5h.01" />
         </>
       )}
       {name === "logout" && (

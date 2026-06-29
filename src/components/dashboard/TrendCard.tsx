@@ -22,8 +22,8 @@ function TrendCard({ stat }: TrendCardProps) {
         <h3 className="mb-2 text-[0.82rem] font-bold text-slate-700">
           {stat.label}
         </h3>
-        <div className="flex items-center gap-2.5">
-          <strong className="text-2xl font-bold leading-none text-slate-950">
+        <div className="flex items-center gap-2">
+          <strong className="text-xl font-bold leading-none text-slate-950">
             {stat.value}
           </strong>
           <span
@@ -37,6 +37,9 @@ function TrendCard({ stat }: TrendCardProps) {
         </div>
         <p className="mt-2.5 text-[0.66rem] font-bold text-slate-400">
           {stat.helper}
+        </p>
+        <p className="mt-1 text-[0.9rem] font-bold text-black">
+          Target: {stat.target}
         </p>
       </div>
     </article>

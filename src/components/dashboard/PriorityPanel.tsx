@@ -87,7 +87,7 @@ function PriorityPanel({
       </div>
 
       <button
-        className="py-2.5 w-full border-0 border-t border-slate-200 bg-white/30 text-[0.9rem] font-semibold! text-black transition hover:bg-slate-200 rounded-b-lg"
+        className="lg:py-2.5 pt-2.5 w-full border-0 border-t border-slate-200 bg-white/30 text-[0.9rem] font-semibold! text-black transition hover:bg-slate-200 rounded-b-lg"
         type="button"
       >
         {actionLabel}

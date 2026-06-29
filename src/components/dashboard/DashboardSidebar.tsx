@@ -10,7 +10,7 @@ function DashboardSidebar({
 }: DashboardSidebarProps) {
   return (
     <aside
-      className="hidden lg:flex min-h-svh  min-w-60 flex-col border-r border-slate-200 bg-white max-lg:min-h-0 max-lg:border-r-0 max-lg:border-b"
+      className="hidden xl:flex min-h-svh  min-w-60 flex-col border-r border-slate-200 bg-white max-lg:min-h-0 max-lg:border-r-0 max-lg:border-b"
       aria-label="Primary navigation"
     >
       <div className="flex min-h-[82px] items-center gap-2.5 px-5 text-[0.98rem] font-extrabold text-slate-950 max-lg:min-h-16">
