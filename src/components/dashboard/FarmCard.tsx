@@ -7,14 +7,14 @@ const statusDotStyles: Record<FarmStatus, string> = {
   Critical: "bg-red-700",
 };
 
-function FarmCard({ farm, isSelected = false, onSelect }: FarmCardProps) {
+function FarmCard({ farm, isSelected = false, onSelectFarm }: FarmCardProps) {
   return (
     <button
       className={`grid min-h-[126px] w-full grid-cols-[34px_minmax(0,1fr)] gap-4 rounded-lg border bg-white p-[16px] text-left transition-shadow hover:shadow-md ${
         isSelected ? "border-red-300 shadow-md" : "border-slate-200"
       }`}
       type="button"
-      onClick={() => onSelect(farm)}
+      onClick={() => onSelectFarm(farm.name)}
       aria-pressed={isSelected}
     >
       <DashboardIcon className="h-8 w-8 text-slate-800" name="image" />

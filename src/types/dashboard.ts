@@ -54,6 +54,7 @@ export type PriorityPanelProps = {
   actionLabel: string
   count: number
   items: PriorityItem[]
+  onSelectFarm: (farmName: string) => void
   subtitle: string
   title: string
   variant: PriorityVariant
@@ -93,7 +94,7 @@ export type Farm = {
 export type FarmCardProps = {
   farm: Farm
   isSelected?: boolean
-  onSelect: (farm: Farm) => void
+  onSelectFarm: (farmName: string) => void
 }
 
 export type FarmDetailPanelProps = {

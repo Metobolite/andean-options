@@ -6,6 +6,7 @@ function PriorityPanel({
   actionLabel,
   count,
   items,
+  onSelectFarm,
   subtitle,
   title,
   variant,
@@ -40,10 +41,11 @@ function PriorityPanel({
 
       <div className="grid flex-1 content-start gap-5 pt-5 pb-4">
         {items.map((item) => (
-          <a
-            className="grid grid-cols-[32px_minmax(0,1fr)_auto_18px] items-center gap-3 text-inherit no-underline max-sm:grid-cols-[32px_minmax(0,1fr)_18px] hover:bg-slate-200/50 rounded-lg p-2 transition"
-            href="#farm-status-heading"
+          <button
+            className="grid w-full grid-cols-[32px_minmax(0,1fr)_auto_18px] items-center gap-3 rounded-lg border-0 bg-transparent p-2 text-left text-inherit transition hover:bg-slate-200/50 max-sm:grid-cols-[32px_minmax(0,1fr)_18px]"
             key={`${item.farm}-${item.title}`}
+            type="button"
+            onClick={() => onSelectFarm(item.farm)}
           >
             <DashboardIcon
               className="h-[31px] w-[31px] text-slate-800"
@@ -64,7 +66,7 @@ function PriorityPanel({
               className="h-3.5 w-3.5 text-slate-950"
               name="chevron"
             />
-          </a>
+          </button>
         ))}
       </div>
 

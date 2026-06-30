@@ -20,6 +20,13 @@ function Dashboard() {
   const [selectedFarm, setSelectedFarm] = useState<Farm | null>(null);
   const alertItems = [...criticalIssues, ...attentionItems];
   const provinceCount = new Set(farms.map((farm) => farm.province)).size;
+  const handleFarmSelect = (farmName: string) => {
+    const farm = farms.find((currentFarm) => currentFarm.name === farmName);
+
+    if (farm) {
+      setSelectedFarm(farm);
+    }
+  };
 
   return (
     <main className="grid min-h-svh bg-[#fbfcfd] text-slate-800 xl:grid-cols-[240px_minmax(0,1fr)]">
@@ -42,6 +49,7 @@ function Dashboard() {
               actionLabel="View all alerts"
               count={criticalIssues.length}
               items={criticalIssues}
+              onSelectFarm={handleFarmSelect}
               subtitle="Requires immediate action"
               title="Critical Issues"
               variant="critical"
@@ -50,6 +58,7 @@ function Dashboard() {
               actionLabel="View all to-dos"
               count={attentionItems.length}
               items={attentionItems}
+              onSelectFarm={handleFarmSelect}
               subtitle="Needs your review today"
               title="Today's Attention"
               variant="attention"
@@ -89,7 +98,7 @@ function Dashboard() {
                   farm={farm}
                   isSelected={selectedFarm?.name === farm.name}
                   key={farm.name}
-                  onSelect={setSelectedFarm}
+                  onSelectFarm={handleFarmSelect}
                 />
               ))}
             </div>

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import type {
   DashboardIconName,
   Farm,
@@ -42,6 +43,18 @@ function FarmDetailPanel({
   farm,
   onClose,
 }: FarmDetailPanelProps) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const animationFrame = window.requestAnimationFrame(() => {
+      setIsVisible(true);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+    };
+  }, []);
+
   const overviewItems = [
     ...farm.details.map((detail) => ({
       ...detail,
@@ -62,12 +75,16 @@ function FarmDetailPanel({
   return (
     <>
       <div
-        className="fixed inset-0 z-40 bg-slate-950/55"
+        className={`fixed inset-0 z-40 bg-slate-950/55 transition-opacity duration-300 ease-in-out ${
+          isVisible ? "opacity-100" : "opacity-0"
+        }`}
         aria-hidden="true"
         onClick={onClose}
       />
       <aside
-        className="fixed inset-y-0 right-0 z-50 flex w-full max-w-[380px] flex-col bg-white px-6 py-7 shadow-2xl"
+        className={`fixed inset-y-0 right-0 z-50 flex w-full max-w-[380px] transform-gpu flex-col bg-white px-6 py-7 shadow-2xl transition-transform duration-300 ease-in-out ${
+          isVisible ? "translate-x-0" : "translate-x-full"
+        }`}
         aria-label={`${farm.name} details`}
       >
         <div className="flex items-start justify-between gap-4">
@@ -79,11 +96,11 @@ function FarmDetailPanel({
             </span>
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <h2 className="m-0 text-lg font-extrabold leading-tight text-slate-900">
+                <h2 className="m-0 text-lg font-bold leading-tight text-slate-900">
                   {farm.name}
                 </h2>
                 <span
-                  className={`rounded-full px-2 py-1 text-[0.64rem] font-extrabold ${statusBadgeStyles[farm.status]}`}
+                  className={`rounded-full px-2 py-1 text-[0.64rem] font-bold ${statusBadgeStyles[farm.status]}`}
                 >
                   {farm.status}
                 </span>
@@ -106,7 +123,7 @@ function FarmDetailPanel({
 
         <section className="mt-8" aria-labelledby="farm-overview-heading">
           <h3
-            className="mb-4 text-sm font-extrabold text-slate-900"
+            className="mb-4 text-sm font-bold text-slate-900"
             id="farm-overview-heading"
           >
             Overview
@@ -125,7 +142,7 @@ function FarmDetailPanel({
                   {item.label}
                 </dt>
                 <dd
-                  className={`m-0 text-right text-xs font-extrabold ${getValueTone(
+                  className={`m-0 text-right text-xs font-bold ${getValueTone(
                     farm,
                     item.label,
                     item.value,
@@ -143,7 +160,7 @@ function FarmDetailPanel({
           aria-labelledby="farm-alerts-heading"
         >
           <h3
-            className="mb-4 text-sm font-extrabold text-slate-900"
+            className="mb-4 text-sm font-bold text-slate-900"
             id="farm-alerts-heading"
           >
             Active Alerts ({activeAlerts.length})
@@ -164,7 +181,7 @@ function FarmDetailPanel({
                       name={alert.variant === "critical" ? "alert" : "bell"}
                     />
                     <div className="min-w-0">
-                      <h4 className="m-0 text-xs font-extrabold text-slate-900">
+                      <h4 className="m-0 text-xs font-bold text-slate-900">
                         {alert.title}
                       </h4>
                       <p className="mt-1 text-[0.68rem] font-semibold text-slate-500">
